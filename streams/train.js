@@ -22,13 +22,13 @@ reader.on('line', (data) => {
     }
     data = data.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
     linesArray.push(data);
-    averageFare = linesArray.map(c => ({pClass: c[2], fare: +c[9]}))
-        .reduce((acc, info) => {
-            const key = info.pClass;
+    averageFare = linesArray.map(c => c)
+        .reduce((acc, p) => {
+            const key = p[2];
             if (!acc[key]) {
                 acc[key] = [];
             }
-            acc[key].push(info.fare);
+            acc[key].push(+p[9]);
             return acc;
         }, {})
     for (const key in averageFare) {
