@@ -1,0 +1,21 @@
+{
+  "name": "03-file-system",
+  "version": "1.0.0",
+  "main": "iterator/range.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "Andrey",
+  "license": "ISC",
+  "description": "working with files",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "date-fns": "^4.1.0",
+    "xlsx": "^0.18.5"
+  }
+}
