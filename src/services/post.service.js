@@ -47,9 +47,16 @@ class PostService {
         return post;
     }
 
-    async getPostsByTags(tagsString) {
-        const tags = tagsString.split(',').map(tag => tag.trim().toLowerCase());
-        return await postRepository.findPostsByTags(tags);
+    async getPostsByTags(tagsArray) {
+        if (!Array.isArray(tagsArray)) {
+            console.warn("getPostsByTags received non-array input. Converting to array.");
+        }
+        const cleanedTags = tagsArray
+        .map(tag => typeof tag === 'string' ? tag.trim().toLowerCase() : '').filter(tag => tag.length > 0);
+        if (cleanedTags.length === 0) {
+            return [];
+        }
+        return await postRepository.findPostsByTags(cleanedTags);
     }
 
     async getPostsByPeriod(dateFrom, dateTo) {
