@@ -11,7 +11,8 @@ class UserAccountController {
     }
 
     async login(req, res, next) {
-        // TODO login in controller
+        const userAccount = await userAccountService.getUser(req.principal.username);
+        res.json(userAccount);
     }
 
     async deleteUser(req, res, next) {
@@ -53,7 +54,8 @@ class UserAccountController {
     }
 
     async changePassword(req, res, next) {
-        // TODO change password in controller
+        await userAccountService.changePassword(req.principal.username, req.headers['x-password']);
+        res.sendStatus(204);
     }
 
     async getUser(req, res, next) {
